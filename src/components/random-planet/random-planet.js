@@ -14,16 +14,10 @@ export default class RandomPlanet extends Component {
     error: false,
   };
 
-  constructor() {
-    super();
+  componentDidMount() {
     this.updatePlanet();
     this.interval = setInterval(this.updatePlanet, 15000);
     // clearInterval(this.interval);
-    console.log('constructor');
-  }
-
-  componentDidMount() {
-    console.log('Did mount');
   }
 
   componentWillUnmount() {
