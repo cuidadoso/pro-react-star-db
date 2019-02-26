@@ -22,6 +22,9 @@ export default class PersonDetails extends Component {
   }
 
   updatePerson = () => {
+    this.setState({
+      loading: true
+    });
     const {personId} = this.props;
     if (!personId) {
       return;
