@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import './person-details.css';
 import SwapiService from '../../services/swapi-service';
-import Spinner from '../random-planet/random-planet';
 import ErrorButton from '../error-button';
+import Spinner from '../spinner';
 
 export default class PersonDetails extends Component {
   swapiService = new SwapiService();
