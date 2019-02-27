@@ -9,8 +9,9 @@ import './app.css';
 import PeoplePage from '../people-page';
 
 import Row from '../row';
-import ItemDetails, {Record} from '../item-details';
+import ItemDetails, { Record } from '../item-details';
 import SwapiService from '../../services/swapi-service';
+import ItemList from '../item-list';
 
 export default class App extends Component {
   swapiService = new SwapiService();
@@ -45,13 +46,9 @@ export default class App extends Component {
       getStarshipImage
     } = this.swapiService;
     const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}
-      >
-        <Record field={'gender'} label={'Gender'}/>
-        <Record field={'eyeColor'} label={'Eye Color'}/>
+      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
+        <Record field={'gender'} label={'Gender'} />
+        <Record field={'eyeColor'} label={'Eye Color'} />
       </ItemDetails>
     );
     const starshopDetails = (
@@ -60,16 +57,16 @@ export default class App extends Component {
         getData={getStarship}
         getImageUrl={getStarshipImage}
       >
-        <Record field={'model'} label={'Model'}/>
-        <Record field={'length'} label={'Length'}/>
-        <Record field={'costInCredits'} label={'Cost'}/>
+        <Record field={'model'} label={'Model'} />
+        <Record field={'length'} label={'Length'} />
+        <Record field={'costInCredits'} label={'Cost'} />
       </ItemDetails>
     );
 
     return (
       <div className="stardb-app">
         <Header />
-        <Row left={personDetails} right={starshopDetails} />
+        {/*<Row left={personDetails} right={starshopDetails} />*/}
         {/*{planet}*/}
 
         {/*<button
@@ -82,21 +79,16 @@ export default class App extends Component {
 
         <PeoplePage />*/}
 
-        {/*<div className="row mb2">
+        <div className="row mb2">
           <div className="col-md-6">
             <ItemList
               onItemSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllPlanets}
-              renderItem={(item) => (
-                <span>
-                  {item.name} <button>!</button>
-                </span>
-              )}
-            />
+              getData={this.swapiService.getAllPeople}
+            >
+              {(item) => item.name}
+            </ItemList>
           </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
+          <div className="col-md-6" />
         </div>
 
         <div className="row mb2">
@@ -104,13 +96,16 @@ export default class App extends Component {
             <ItemList
               onItemSelected={this.onPersonSelected}
               getData={this.swapiService.getAllStarships}
-              renderItem={(item) => item.name}
-            />
+            >
+              {(item) => (
+                <span>
+                  {item.name} <button>!</button>
+                </span>
+              )}
+            </ItemList>
           </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
-        </div>*/}
+          <div className="col-md-6" />
+        </div>
       </div>
     );
   }
