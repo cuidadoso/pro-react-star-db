@@ -9,7 +9,7 @@ export default class PersonDetails extends Component {
   swapiService = new SwapiService();
   state = {
     person: null,
-    loading: true,
+    loading: true
   };
 
   componentDidMount() {
@@ -26,22 +26,20 @@ export default class PersonDetails extends Component {
     this.setState({
       loading: true
     });
-    const {personId} = this.props;
+    const { personId } = this.props;
     if (!personId) {
       return;
     }
-    this.swapiService
-      .getPerson(personId)
-      .then((person) => {
-        this.setState({
-          person,
-          loading: false
-        });
-      })
+    this.swapiService.getPerson(personId).then((person) => {
+      this.setState({
+        person,
+        loading: false
+      });
+    });
   };
 
   render() {
-    const {person, loading} = this.state;
+    const { person, loading } = this.state;
     if (!person) {
       return <span>Select a person from a list</span>;
     }
@@ -54,7 +52,7 @@ export default class PersonDetails extends Component {
         {spinner}
         {content}
       </div>
-    )
+    );
   }
 }
 
@@ -63,12 +61,16 @@ const PersonView = ({ person }) => {
 
   return (
     <React.Fragment>
-      <img className="person-image"
-           src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-           alt="character"/>
+      <img
+        className="person-image"
+        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+        alt="character"
+      />
 
       <div className="card-body">
-        <h4>{name} {id}</h4>
+        <h4>
+          {name} {id}
+        </h4>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
             <span className="term">Gender</span>
@@ -83,7 +85,7 @@ const PersonView = ({ person }) => {
             <span>{eyeColor}</span>
           </li>
         </ul>
-        <ErrorButton/>
+        <ErrorButton />
       </div>
     </React.Fragment>
   );

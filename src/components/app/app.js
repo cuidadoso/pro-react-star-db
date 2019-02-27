@@ -8,8 +8,12 @@ import ErrorIndicator from '../error-indicator';
 import './app.css';
 import PeoplePage from '../people-page';
 
-export default class App extends Component {
+import PersonDetails from '../person-details';
+import SwapiService from '../../services/swapi-service';
+import ItemList from '../item-list';
 
+export default class App extends Component {
+  swapiService = new SwapiService();
   state = {
     showRandomPlanet: true,
     hasError: false
@@ -19,7 +23,7 @@ export default class App extends Component {
     this.setState((state) => {
       return {
         showRandomPlanet: !state.showRandomPlanet
-      }
+      };
     });
   };
 
@@ -28,14 +32,11 @@ export default class App extends Component {
   }
 
   render() {
-
     if (this.state.hasError) {
-      return <ErrorIndicator />
+      return <ErrorIndicator />;
     }
 
-    const planet = this.state.showRandomPlanet ?
-      <RandomPlanet/> :
-      null;
+    const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
     return (
       <div className="stardb-app">
@@ -48,11 +49,33 @@ export default class App extends Component {
         >
           Toggle Random Planet
         </button>
-        <ErrorButton/>
+        <ErrorButton />
 
         <PeoplePage />
-        <PeoplePage />
-        <PeoplePage />
+
+        <div className="row mb2">
+          <div className="col-md-6">
+            <ItemList
+              onItemSelected={this.onPersonSelected}
+              getData={this.swapiService.getAllPlanets}
+            />
+          </div>
+          <div className="col-md-6">
+            <PersonDetails personId={this.state.selectedPerson} />
+          </div>
+        </div>
+
+        <div className="row mb2">
+          <div className="col-md-6">
+            <ItemList
+              onItemSelected={this.onPersonSelected}
+              getData={this.swapiService.getAllStarships}
+            />
+          </div>
+          <div className="col-md-6">
+            <PersonDetails personId={this.state.selectedPerson} />
+          </div>
+        </div>
       </div>
     );
   }
