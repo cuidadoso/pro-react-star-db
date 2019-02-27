@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './item-details.css';
 import ErrorButton from '../error-button';
+import ErrorBoundary from '../error-boundary';
 
 const Record = ({ item, field, label }) => {
   return (
@@ -54,19 +55,21 @@ export default class ItemDetails extends Component {
     const { name } = item;
 
     return (
-      <div className="person-details card">
-        <img className="person-image" src={image} alt="character" />
+      <ErrorBoundary>
+        <div className="person-details card">
+          <img className="person-image" src={image} alt="character" />
 
-        <div className="card-body">
-          <h4>{name}</h4>
-          <ul className="list-group list-group-flush">
-            {React.Children.map(this.props.children, (child) => {
-              return React.cloneElement(child, { item });
-            })}
-          </ul>
-          <ErrorButton />
+          <div className="card-body">
+            <h4>{name}</h4>
+            <ul className="list-group list-group-flush">
+              {React.Children.map(this.props.children, (child) => {
+                return React.cloneElement(child, { item });
+              })}
+            </ul>
+            <ErrorButton />
+          </div>
         </div>
-      </div>
+      </ErrorBoundary>
     );
   }
 }
