@@ -13,7 +13,7 @@ const {
   getStarshipImage
 } = swapiService;
 
-const PersonDetails = ({itemId}) => {
+const PersonDetails = ({ itemId }) => {
   return (
     <ItemDetails
       itemId={itemId}
@@ -26,7 +26,7 @@ const PersonDetails = ({itemId}) => {
   );
 };
 
-const PlanetDetails = ({itemId}) => {
+const PlanetDetails = ({ itemId }) => {
   return (
     <ItemDetails
       itemId={itemId}
@@ -40,7 +40,7 @@ const PlanetDetails = ({itemId}) => {
   );
 };
 
-const StarshipDetails = ({itemId}) => {
+const StarshipDetails = ({ itemId }) => {
   return (
     <ItemDetails
       itemId={itemId}

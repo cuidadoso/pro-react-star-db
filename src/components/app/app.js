@@ -6,7 +6,14 @@ import RandomPlanet from '../random-planet';
 import ItemDetails, { Record } from '../item-details';
 import SwapiService from '../../services/swapi-service';
 import ErrorBoundary from '../error-boundary';
-import { PersonDetails, PersonList, PlanetDetails, PlanetList, StarshipDetails, StarshipList } from '../sw-components';
+import {
+  PersonDetails,
+  PersonList,
+  PlanetDetails,
+  PlanetList,
+  StarshipDetails,
+  StarshipList
+} from '../sw-components';
 
 import './app.css';
 
@@ -60,11 +67,11 @@ export default class App extends Component {
           <PlanetDetails itemId={5} />
           <StarshipDetails itemId={9} />
 
-          <PersonList>{(item) => item.name}</PersonList>
+          <PersonList />
 
-          <StarshipList>{(item) => item.name}</StarshipList>
+          <StarshipList />
 
-          <PlanetList>{(item) => item.name}</PlanetList>
+          <PlanetList />
           {/*<Row left={personDetails} right={starshopDetails} />*/}
           {/*{planet}*/}
 
