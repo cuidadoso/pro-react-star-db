@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import './item-details.css';
 import ErrorButton from '../error-button';
-import Spinner from '../spinner';
 
 const Record = ({ item, field, label }) => {
   return (
@@ -33,9 +32,7 @@ export default class ItemDetails extends Component {
   }
 
   updateItem = () => {
-    this.setState({
-      loading: true
-    });
+    this.setState({});
     const { itemId, getData, getImageUrl } = this.props;
     if (!itemId) {
       return;
@@ -43,21 +40,18 @@ export default class ItemDetails extends Component {
     getData(itemId).then((item) => {
       this.setState({
         item,
-        image: getImageUrl(item),
-        loading: false
+        image: getImageUrl(item)
       });
     });
   };
 
   render() {
-    const { item, image, loading } = this.state;
+    const { item, image } = this.state;
     if (!item) {
       return <span>Select a item from a list</span>;
     }
 
-    const { id, name, gender, birthYear, eyeColor } = item;
-
-    const spinner = loading ? <Spinner /> : null;
+    const { name } = item;
 
     return (
       <div className="person-details card">
