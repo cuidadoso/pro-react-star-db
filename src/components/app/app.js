@@ -9,7 +9,7 @@ import './app.css';
 import PeoplePage from '../people-page';
 
 import Row from '../row';
-import ItemDetails from '../item-details';
+import ItemDetails, {Record} from '../item-details';
 import SwapiService from '../../services/swapi-service';
 
 export default class App extends Component {
@@ -49,7 +49,10 @@ export default class App extends Component {
         itemId={11}
         getData={getPerson}
         getImageUrl={getPersonImage}
-      />
+      >
+        <Record field={'gender'} label={'Gender'}/>
+        <Record field={'eyeColor'} label={'Eye Color'}/>
+      </ItemDetails>
     );
     const starshopDetails = (
       <ItemDetails
