@@ -4,11 +4,11 @@ import './item-details.css';
 import ErrorButton from '../error-button';
 import Spinner from '../spinner';
 
-const Record = ({ field, label}) => {
+const Record = ({ item, field, label}) => {
   return (
     <li className="list-group-item">
       <span className="term">{label}</span>
-      <span>{field}</span>
+      <span>{item[field]}</span>
     </li>
   );
 };
@@ -72,7 +72,7 @@ export default class ItemDetails extends Component {
           <ul className="list-group list-group-flush">
             {
               React.Children.map(this.props.children, (child) => {
-                return child;
+                return React.cloneElement(child, {item});
               })
             }
           </ul>
