@@ -1,5 +1,4 @@
 export default class DummySwapiService {
-
   _people = [
     {
       id: 1,
@@ -62,7 +61,7 @@ export default class DummySwapiService {
   };
 
   getPlanet = async () => {
-    return this._planets[0]
+    return this._planets[0];
   };
 
   getAllStarships = async () => {
@@ -74,7 +73,7 @@ export default class DummySwapiService {
   };
 
   getPersonImage = () => {
-    return `https://placeimg.com/400/500/people`
+    return `https://placeimg.com/400/500/people`;
   };
 
   getStarshipImage = () => {
@@ -82,6 +81,6 @@ export default class DummySwapiService {
   };
 
   getPlanetImage = () => {
-    return `https://placeimg.com/400/400/nature`
+    return `https://placeimg.com/400/400/nature`;
   };
 }

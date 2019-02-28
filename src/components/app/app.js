@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import {SwapiServiceProvider} from '../swapi-service-context';
+import { SwapiServiceProvider } from '../swapi-service-context';
 import ItemDetails, { Record } from '../item-details';
 import SwapiService from '../../services/swapi-service';
 import DummySwapiService from '../../services/dummy-swapi-service';
@@ -65,16 +65,19 @@ export default class App extends Component {
     return (
       <ErrorBoundary>
         <SwapiServiceProvider value={this.swapiService}>
-        <div className="stardb-app">
-          <Header />
+          <div className="stardb-app">
+            <Header />
 
-          <ErrorButton />
+            <ErrorButton />
 
-          <Row left={<PersonList />} right={<PersonDetails itemId={11} />} />
-          <Row left={<StarshipList />} right={<StarshipDetails itemId={9} />} />
-          <Row left={<PlanetList />} right={<PlanetDetails itemId={5} />} />
+            <Row left={<PersonList />} right={<PersonDetails itemId={11} />} />
+            <Row
+              left={<StarshipList />}
+              right={<StarshipDetails itemId={9} />}
+            />
+            <Row left={<PlanetList />} right={<PlanetDetails itemId={5} />} />
 
-          {/*<PersonDetails itemId={11} />
+            {/*<PersonDetails itemId={11} />
           <PlanetDetails itemId={5} />
           <StarshipDetails itemId={9} />
 
@@ -84,15 +87,14 @@ export default class App extends Component {
 
           <PlanetList />*/}
 
-          {/*<button
+            {/*<button
           className="toggle-planet btn btn-warning btn-lg"
           onClick={this.toggleRandomPlanet}
         >
           Toggle Random Planet
         </button>
         <ErrorButton />*/}
-
-        </div>
+          </div>
         </SwapiServiceProvider>
       </ErrorBoundary>
     );
