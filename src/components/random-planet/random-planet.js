@@ -30,7 +30,7 @@ export default class RandomPlanet extends Component {
     });
   };
 
-  onError = (err) => {
+  onError = () => {
     this.setState({
       loading: false,
       error: true
@@ -71,6 +71,7 @@ const PlanetView = ({ planet }) => {
   return (
     <React.Fragment>
       <img
+        alt={'Random planet'}
         className="planet-image"
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
       />
