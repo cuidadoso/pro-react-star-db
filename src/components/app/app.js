@@ -4,8 +4,7 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import { SwapiServiceProvider } from '../swapi-service-context';
 import ItemDetails, { Record } from '../item-details';
-import SwapiService from '../../services/swapi-service';
-import DummySwapiService from '../../services/dummy-swapi-service';
+import { SwapiService, DummySwapiService } from '../../services';
 import ErrorBoundary from '../error-boundary';
 import {
   PersonDetails,
@@ -21,10 +20,20 @@ import Row from '../row';
 import ErrorButton from '../error-button';
 
 export default class App extends Component {
-  swapiService = new DummySwapiService();
   state = {
     showRandomPlanet: true,
-    hasError: false
+    hasError: false,
+    swapiService: new DummySwapiService()
+  };
+
+  onServiceChage = () => {
+    this.setState(({ swapiService }) => {
+      const Service =
+        swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
+      return {
+        swapiService: new Service()
+      };
+    });
   };
 
   toggleRandomPlanet = () => {
@@ -43,7 +52,7 @@ export default class App extends Component {
       getStarship,
       getPersonImage,
       getStarshipImage
-    } = this.swapiService;
+    } = this.state.swapiService;
     const personDetails = (
       <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
         <Record field={'gender'} label={'Gender'} />
@@ -64,9 +73,9 @@ export default class App extends Component {
 
     return (
       <ErrorBoundary>
-        <SwapiServiceProvider value={this.swapiService}>
+        <SwapiServiceProvider value={this.state.swapiService}>
           <div className="stardb-app">
-            <Header />
+            <Header onServiceChage={this.onServiceChage} />
 
             <ErrorButton />
 
