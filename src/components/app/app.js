@@ -9,6 +9,7 @@ import ErrorBoundary from '../error-boundary';
 import { PeoplePage, PlanetPage, StarshipPage } from '../pages';
 
 import './app.css';
+import StarshipDetails from '../sw-components/starship-details';
 
 export default class App extends Component {
   state = {
@@ -39,7 +40,14 @@ export default class App extends Component {
               <Route path="/people" render={() => <h2>People</h2>} />
               <Route path="/people" component={PeoplePage} />
               <Route path="/planets" component={PlanetPage} />
-              <Route path="/starships" component={StarshipPage} />
+              <Route path="/starships" component={StarshipPage} exact />
+              <Route
+                path="/starships/:id"
+                render={({ match, location, history }) => {
+                  const { id } = match.params;
+                  return <StarshipDetails itemId={id} />;
+                }}
+              />
             </div>
           </Router>
         </SwapiServiceProvider>
