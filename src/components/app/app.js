@@ -35,6 +35,8 @@ export default class App extends Component {
               <Header onServiceChage={this.onServiceChage} />
               <RandomPlanet />
 
+              <Route path="/" render={() => <h2>Welcome to StarDB</h2>} exact />
+              <Route path="/people" render={() => <h2>People</h2>} />
               <Route path="/people" component={PeoplePage} />
               <Route path="/planets" component={PlanetPage} />
               <Route path="/starships" component={StarshipPage} />
