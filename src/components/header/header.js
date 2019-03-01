@@ -19,6 +19,12 @@ const Header = ({ onServiceChage }) => {
         <li>
           <Link to="/starships/">Starships</Link>
         </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/secret">Secret</Link>
+        </li>
       </ul>
       <button className={'btn btn-primary btn-sm'} onClick={onServiceChage}>
         Change Service
