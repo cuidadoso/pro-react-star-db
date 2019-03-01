@@ -8,7 +8,7 @@ import ErrorIndicator from '../error-indicator';
 
 export default class RandomPlanet extends Component {
   static defaultProps = {
-    updateInterval: 15000
+    updateInterval: 150000
   };
 
   static propTypes = {
